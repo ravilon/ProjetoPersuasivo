@@ -1,11 +1,46 @@
 from flask import Blueprint, jsonify, request
+from flasgger import swag_from
 import importlib  # Used for dynamic imports
 
 bp = Blueprint('api', __name__)
 
 # Define your route for calculations
 @bp.route('/api/calculate', methods=['POST'])
+@swag_from({
+    'responses': {
+        200: {
+            'description': 'Calculation result',
+            'schema': {
+                'type': 'object',
+                'properties': {
+                    'result': {'type': 'number'}
+                }
+            }
+        },
+        400: {
+            'description': 'Invalid input data'
+        },
+        404: {
+            'description': "Calculation not found"
+        }
+    },
+    'parameters': [
+        {
+            'name': 'body',
+            'in': 'body',
+            'required': True,
+            'schema': {
+                'type': 'object',
+                'properties': {
+                    'calculation': {'type': 'string'},
+                    'params': {'type': 'object'}
+                }
+            }
+        }
+    ]
+})
 def calculate():
+    global calculation_name
     try:
         # Get the calculation name and parameters from the request JSON
         data = request.get_json()
