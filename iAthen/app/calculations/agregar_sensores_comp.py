@@ -14,28 +14,28 @@ def calculate(params):
     need = []
 
     # Get dimensions
-    ncolunasVet = len(vet1[0])
-    nlinhasVet = len(vet1)
+    ncolunas_vet = len(vet1[0])
+    nlinhas_vet = len(vet1)
 
     # Ensure all vectors have the same dimensions
-    if (ncolunasVet == len(vet2[0]) == len(vet3[0]) == len(vet4[0]) == len(vet5[0])):
+    if ncolunas_vet == len(vet2[0]) == len(vet3[0]) == len(vet4[0]) == len(vet5[0]):
 
         # Initialize resultado with zeros
-        for i in range(nlinhasVet):
-            linha = [0.0] * ncolunasVet
+        for i in range(nlinhas_vet):
+            linha = [0.0] * ncolunas_vet
             resultado.append(linha)
 
         # Calculate the maximum for each element
-        for i in range(nlinhasVet):
-            for j in range(ncolunasVet):
+        for i in range(nlinhas_vet):
+            for j in range(ncolunas_vet):
                 resultado[i][j] = max(vet1[i][j], vet2[i][j], vet3[i][j], vet4[i][j], vet5[i][j])
 
         # Find the column index with the maximum value in the first row of resultado
         fuzzysaida = resultado[0].index(max(resultado[0]))
 
         # Initialize need with zeros
-        for i in range(nlinhasVet):
-            linha = [0.0] * ncolunasVet
+        for i in range(nlinhas_vet):
+            linha = [0.0] * ncolunas_vet
             need.append(linha)
 
         # Set the corresponding column in the first row of need to 1

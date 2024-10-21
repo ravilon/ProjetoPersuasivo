@@ -8,26 +8,26 @@ def calculate(params):
         return "Missing vectors 'vet1', 'vet2', or 'vet3'"
 
     resultado = []
-    ncolunasVet = len(vet1)
+    ncolunas_vet = len(vet1)
 
     # Ensure all vectors have the same number of columns
-    if ncolunasVet == len(vet2) == len(vet3):
+    if ncolunas_vet == len(vet2) == len(vet3):
 
         # Initialize the result array
-        for i in range(ncolunasVet):
-            linha = []
-            linha.append(0.0)
+        for i in range(ncolunas_vet):
+            linha = [0.0]
             resultado.append(linha)
 
+
         # Calculate the maximum for each column
-        for i in range(ncolunasVet):
+        for i in range(ncolunas_vet):
             resultado[i] = max(vet1[i], vet2[i], vet3[i])
 
         # Get the fuzzy output (max value in resultado)
         fuzzysaida = max(resultado)
 
         # Update resultado based on fuzzy output
-        for i in range(ncolunasVet):
+        for i in range(ncolunas_vet):
             if resultado[i] == fuzzysaida:
                 resultado[i] = 1
             else:
